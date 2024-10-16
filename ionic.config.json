@@ -1,0 +1,7 @@
+{
+  "name": "connectUp-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
