@@ -1,0 +1,41 @@
+<ion-content scrollY="false">
+  <div>
+    <ion-grid class="mt-60 text-center">
+      <img alt="connectUp" src="../../../assets/logo.png" />
+    </ion-grid>
+    <ion-grid class="mt-30">
+      <form [formGroup]="signInForm">
+        <ion-list>
+          <ion-item lines="full">
+            <ion-icon color="light" slot="start" name="person-circle-outline"></ion-icon>
+            <ion-input class="light-color" label="Usuario" labelPlacement="stacked" formControlName="username"></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-icon color="light" slot="start" name="lock-closed"></ion-icon>
+            <ion-input class="light" label="Contraseña" labelPlacement="floating" type="password" formControlName="password">
+              <ion-input-password-toggle slot="end" color="light"></ion-input-password-toggle>
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-grid>
+
+    <ion-grid class="mt-30">
+      <ion-row>
+        <ion-col>
+          <ion-button class="g-button" expand="block" color="light" [disabled]="signInForm.invalid || loading" (click)="login()">
+            <ion-spinner *ngIf="loading" name="bubbles" color="dark"></ion-spinner>
+            Iniciar sesión
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" color="light" [routerLink]="['/security/sign-up']">Regístrarse</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

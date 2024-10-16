@@ -34,4 +34,84 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+
+:root {
+    --ion-background-color: #223651;
+    --ion-color-custom: rgb(35, 55, 83);
+    --ion-light-color: #FFFFFF;
+    --ion-gold-color: #E4CF8C;
+    --primary-text-color: #E4CF8C;
+  }
+
+ion-toolbar {
+    --background: #223651;
+}
+
+ion-label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span small {
+  color: var(--ion-light-color);
+}
+
+ion-item {
+  --color: var(--ion-light-color);
+}
+
+ion-toolbar,
+ion-header,
+ion-footer {
+  color: var(--ion-light-color);
+}
+
+.menu-item.active {
+  background-color: #B9A66D;
+}
+
+.menu-item.active {
+  --background: #223651;
+  color: #FFFFFF;
+
+  ion-icon {
+    color: var(--fc-primary);
+  }
+}
+
+.c-button {
+  --background: rgb(242, 223, 167);
+  --color: #FFFFFF;
+}
+
+.taj {
+  text-align: justify;
+}
+
+// Font size
+
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+//Breadcrumb
+
+.bread {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+//Global button
+.g-button {
+  height: 50px;
+  font-size: 17px
+}
