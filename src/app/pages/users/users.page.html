@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<ion-content color="light">
+  <ion-row>
+    <ion-col>
+      <h1 class="t-s ion-text-center">Usuarios</h1><br>
+    </ion-col>
+  </ion-row>
+
+  <ion-list [inset]="true" *ngIf="users">
+    <ion-card *ngFor="let user of users">
+      <ion-card-header>
+        <ion-card-title>{{user?.name}}</ion-card-title>
+        <ion-card-subtitle>{{user?.nick}} - {{user?.cellphone}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{user.bio}}
+      </ion-card-content>
+      <div>
+        <ion-button class="sw m-2" style="float: right;" size="small" *ngIf="!isFollowing(user._id)"
+          (click)="followUser(user._id)">Seguir</ion-button>
+        <ion-button class="sw m-2" style="float: right;" size="small" color="danger" fill="outline"
+          *ngIf="isFollowing(user._id)" (click)="unfollowUser(user._id)">No seguir</ion-button>
+      </div>
+    </ion-card>
+  </ion-list>
+</ion-content>

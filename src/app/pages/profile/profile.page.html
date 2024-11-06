@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true" scrollY="false">
+  <div class="container">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h1 class="t-s">Perfil</h1>
+      </ion-col>
+    </ion-row>
+    <div class="row mt-2">
+      <div class="col ion-text-center profile-image-container">
+        <div class="image-wrapper">
+          <img [src]="image ? image : 'assets/profile.png'" alt="User profile" class="profile-image">
+          <div (click)="triggerFileInput()">
+            <ion-icon name="camera" class="camera-icon"></ion-icon>
+          </div>
+        </div>
+        <input type="file" #fileInput accept="image/*" style="display: none;" (change)="onFileSelected($event)">
+      </div>
+    </div>
+
+    <ion-grid>
+      <ion-row class="ion-text-center mt-4">
+        <ion-col>
+          <small>Siguiendo</small>
+        </ion-col>
+        <ion-col>
+          <small>Seguidores</small>
+        </ion-col>
+        <ion-col>
+          <small>Publicaciones</small>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <strong>{{counter?.followingCount}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{counter?.followedCount}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{counter?.publicationsCount}}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <form [formGroup]="userForm">
+        <ion-list>
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Nombres" labelPlacement="floating" placeholder="Nombres..." formControlName="name">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="userForm.get('nombres')?.touched && userForm.get('nombres')?.invalid">
+            <p class="error-text">Este campo es obligatorio.</p>
+          </div>
+
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Apellidos" labelPlacement="floating" placeholder="Apellidos..."
+              formControlName="last_name">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="userForm.get('apellidos')?.touched && userForm.get('apellidos')?.invalid">
+            <p class="error-text">Este campo es obligatorio.</p>
+          </div>
+
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Alias" labelPlacement="floating" placeholder="Alias..." formControlName="nick">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="userForm.get('nick')?.touched && userForm.get('nick')?.invalid"></div>
+
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Email" labelPlacement="floating" placeholder="Email..." formControlName="email">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Celular" labelPlacement="floating" placeholder="Celular..." formControlName="cellphone">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="mt-2" lines="full">
+            <ion-input label="Profesión" labelPlacement="floating" placeholder="Profesión..." formControlName="profession">
+            </ion-input>
+          </ion-item>
+
+          <div class="mt-5 text-center">
+            <ion-button (click)="update()">Actualizar</ion-button>
+          </div>
+        </ion-list>
+      </form>
+    </ion-grid>
+  </div>
+</ion-content>

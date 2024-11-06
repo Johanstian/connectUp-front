@@ -37,37 +37,47 @@
 // @import "@ionic/angular/css/palettes/dark.system.css";
 
 :root {
-    --ion-background-color: #223651;
+    // --ion-background-color: #223651;
+    // --ion-background-color: #1e88e5;
     --ion-color-custom: rgb(35, 55, 83);
-    --ion-light-color: #FFFFFF;
-    --ion-gold-color: #E4CF8C;
-    --primary-text-color: #E4CF8C;
+    --ion-light-color: #223651;
   }
 
 ion-toolbar {
     --background: #223651;
 }
 
-ion-label,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span small {
-  color: var(--ion-light-color);
-}
+
+// body {
+//   background: radial-gradient(at top left, rgba(146, 43, 225, 1) 0%, rgba(43, 9, 107, 1) 100%);
+//   background-repeat: no-repeat;
+// }
+
+// ion-label,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// span small {
+//   color: var(--ion-light-color);
+// }
 
 ion-item {
   --color: var(--ion-light-color);
 }
 
+ion-button {
+  --background: var(--ion-light-color);
+}
+
 ion-toolbar,
 ion-header,
 ion-footer {
-  color: var(--ion-light-color);
+  // color: var(--ion-light-color);
+  color: #FFFFFF;
 }
 
 .menu-item.active {
@@ -81,15 +91,6 @@ ion-footer {
   ion-icon {
     color: var(--fc-primary);
   }
-}
-
-.c-button {
-  --background: rgb(242, 223, 167);
-  --color: #FFFFFF;
-}
-
-.taj {
-  text-align: justify;
 }
 
 // Font size
@@ -114,4 +115,22 @@ ion-footer {
 .g-button {
   height: 50px;
   font-size: 17px
+}
+
+ion-alert.custom-alert {
+  --backdrop-opacity: 0.7;
+}
+
+.alertSuccess {
+  color: #000000;
+}
+
+.t-s {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra con opacidad */
+  // color: #fff;
+}
+
+.b-s {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra con opacidad */
+  // color: #fff;
 }

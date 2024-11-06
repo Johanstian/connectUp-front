@@ -3,25 +3,31 @@
     <ion-header>
       <ion-toolbar>
         <div class="mt-60 mb-30" style="display: flex; justify-content: center; align-items: center;">
-          <img style="width: 80%;" src="../../assets/logo.png" alt="logoUrl">
+          <br>
+          <h1>connectUp</h1>
+          <br>
         </div>
-
-
-
       </ion-toolbar>
     </ion-header>
 
     <ion-content style="width: 100%;" scrollY="false">
       <div>
-
         <ion-menu-toggle>
-          <ion-item lines="none" style="display: flex; align-items: center;" class="mt-2">
-            <ion-icon name="person-circle" style="color: #FFFFFF; font-size: 40px; margin-right: 10px;"></ion-icon>
-            <ion-label
-              style="display: flex; flex-direction: column; justify-content: center; color: #FFFFFF; margin-left: 10xpx">
-              <p style="margin: 0; font-weight: bold;">{{user?.username | titlecase}}</p>
-              <small style="margin-top: 2px;">{{user?.displayName}}</small>
+          <ion-item lines="none" style="display: flex; align-items: center;" class="mt-5">
+            <ion-icon name="person-circle" style="font-size: 40px; margin-right: 10px;"></ion-icon>
+            <ion-label style="display: flex; flex-direction: column; justify-content: center; margin-left: 10xpx">
+              <p style="margin: 0; font-weight: bold;">{{user?.name | titlecase}} {{user?.lastName | titlecase}}</p>
+              <small style="margin-top: 2px;">{{user?.profession | titlecase}}</small>
             </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle (click)="closeMenu()">
+          <ion-item lines="none" class="mt-5" [routerLink]="'/pages/profile'" routerDirection="root"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            [ngClass]="{'menu-item': true, 'selected': 'pages/profile'}" lines="none">
+            <ion-icon slot="start" name="person"></ion-icon>
+            <ion-label>Cuenta</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -30,17 +36,26 @@
           <ion-item class="mt-2" [routerLink]="'/pages/home'" routerDirection="root" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" [ngClass]="{'menu-item': true, 'selected': 'pages/home'}"
             lines="none">
-            <ion-icon slot="start" name="home" class="g-c"></ion-icon>
+            <ion-icon slot="start" name="home"></ion-icon>
             <ion-label>Inicio</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle (click)="closeMenu()">
-          <ion-item class="mt-2" [routerLink]="'/pages/products'" routerDirection="root" routerLinkActive="active"
+          <ion-item class="mt-2" [routerLink]="'/pages/users'" routerDirection="root" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" [ngClass]="{'menu-item': true, 'selected': 'pages/schedule'}"
             lines="none">
-            <ion-icon slot="start" name="today"></ion-icon>
-            <ion-label>Productos</ion-label>
+            <ion-icon slot="start" name="people"></ion-icon>
+            <ion-label>Usuarios</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle (click)="closeMenu()">
+          <ion-item class="mt-2" [routerLink]="'/pages/publications'" routerDirection="root" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" [ngClass]="{'menu-item': true, 'selected': 'pages/schedule'}"
+            lines="none">
+            <ion-icon slot="start" name="person-add"></ion-icon>
+            <ion-label>Publicaciones</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </div>
@@ -48,7 +63,9 @@
       <ion-grid class="container" style="margin-top: 60px;">
         <ion-row class="bottom-row">
           <ion-col class="centered">
-            <ion-button expand="block" color="light" (click)="logout()">Cerrar sesión</ion-button>
+            <ion-button expand="block" (click)="logout()">Cerrar sesión
+              <ion-icon class="ms-2" name="enter"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

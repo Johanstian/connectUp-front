@@ -1,0 +1,9 @@
+.fixed-bottom-button {
+  position: fixed;
+  bottom: 20px;
+  /* Distancia desde la parte inferior de la página */
+  right: 20px;
+  /* Distancia desde la derecha de la página */
+  z-index: 1000;
+  /* Asegura que el botón esté por encima de otros elementos */
+}

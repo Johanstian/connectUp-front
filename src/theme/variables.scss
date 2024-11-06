@@ -1,13 +1,17 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 
-:root {
-    --ion-background-color: #5c6bc0;
-    // --ion-background-color: #3d5afe;
-    // --ion-background-color: #448aff;
-  }
-  
-  ion-app {
-    background-color: var(--ion-background-color);
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: 'Montserrat';
+  // color: #FFFFFF;
+}
+
+// :root {
+//   --ion-background-color: radial-gradient(at top left, rgba(146, 43, 225, 1) 0%, rgba(43, 9, 107, 1) 100%);;
+// }
+
+ion-app {
+  background-color: var(--ion-background-color);
+}

@@ -1,4 +1,82 @@
 <app-header></app-header>
 <ion-content [fullscreen]="true">
-  <p>Home</p>
+  <div class="container">
+    <h1 class="t-s" style="float: right;">Hola <strong>{{user.nick}}</strong></h1>
+  </div>
+  <div>
+    <swiper-container autoplay-delay="3000" slides-per-view="1">
+      <swiper-slide *ngFor="let publication of publications">
+        <ion-card>
+          <ion-card-header class="h-card-head">
+            <ion-card-title>
+              <strong class="event-title">{{publication.user_id?.name | titlecase}}</strong>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <small class="event-title">{{publication.user_id?.nick | titlecase}} - {{publication.user_id?.cellphone}}</small>
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content class="h-card-cont">
+            <div class="h-title">
+              <img [src]="publication.file ? publication.file : 'assets/logo.png'" alt=""
+                style="height: 260px; width: 100%; border-radius: 5px;">
+            </div>
+            <div class="mt-2">
+              <p>{{publication.text | titlecase}}</p>
+            </div>
+          </ion-card-content>
+
+          <ion-card-footer style="float: right;">
+            <div class="h-card-foot">
+              <ion-icon name="time-outline" color="light"></ion-icon>
+              <small class="ml-1 light">
+                <span>Fecha: </span>{{publication.created_at | date: 'short'}}</small>
+            </div>
+          </ion-card-footer>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div class="container mt-4 mb-4" *ngIf="!publications">
+    <ion-row>
+      <ion-col class="text-center">
+        <p>Empieza a seguir a tus usuarios favoritos para ver sus publicaciones.</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="container">
+    <ion-button class="fixed-bottom-button" id="open-modal" expand="block" style="float: right;">
+      <ion-icon name="create"></ion-icon>
+      Publicar
+    </ion-button>
+  </div>
+
+  <ion-modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button color="light" (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="createPublications()" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="container mt-4">
+          <h1>Publicar</h1>
+        </div>
+        <div class="container mt-4">
+          <p>¡Empieza a publicar, para que así puedas tener muchos seguidores!</p>
+        </div>
+        <ion-item>
+          <ion-input label="Publicación" labelPlacement="stacked" type="text"
+            placeholder="Escribe aquí lo que quieras publicar..." [(ngModel)]="text"></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

@@ -1,0 +1,25 @@
+.profile-image-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.camera-icon {
+  color: rgb(34, 54, 81, 0.8);
+  font-size: 22px;
+  margin-top: 0px;
+}

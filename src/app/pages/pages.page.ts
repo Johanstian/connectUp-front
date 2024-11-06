@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
+import { AlertService } from '../core/services/alert.service';
+import { IdentityService } from '../core/services/identity.service';
 
 @Component({
   selector: 'app-pages',
@@ -12,6 +14,8 @@ export class PagesPage implements OnInit {
   accessToken: any;
   applicationId: any;
   user: any;
+  token: any;
+  userSubscription: any;
 
   pages = [
     {
@@ -54,14 +58,19 @@ export class PagesPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
-    // private alertService: AlertService,
-    // private authService: AuthService,
+    private alertService: AlertService,
+    private identityService: IdentityService,
     private menuController: MenuController,
     private router: Router
   ) { }
 
   ngOnInit() {
-    // this.user = this.authService.getUser();
+    this.userSubscription = this.identityService.user$.subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
+    this.token = localStorage.getItem('token');
   }
 
   async logout() {
@@ -70,14 +79,17 @@ export class PagesPage implements OnInit {
       buttons: [
         {
           text: 'No',
+          cssClass: 'alert-button-cancel',
           role: 'cancel',
-          cssClass: 'secondary'
         },
         {
           text: 'Si',
+          cssClass: 'alert-button-confirm',
           handler: () => {
-            localStorage.removeItem('accessToken')
-            localStorage.removeItem('user')
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.user = null;
+            this.token = null;
             this.router.navigate(['/security/sign-in'])
             this.closeMenu();
           }
@@ -91,8 +103,5 @@ export class PagesPage implements OnInit {
     this.menuController.close();
   }
 
-  hasProfile() {
-
-  }
 
 }

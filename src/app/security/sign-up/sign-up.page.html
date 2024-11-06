@@ -1,13 +1,108 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>sign-up</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="" color="light" [routerLink]="['/']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sign-up</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" scrollY="false">
+  <ion-card *ngIf="currentSection === 1">
+    <ion-card-content>
+      <form [formGroup]="signUpForm">
+        <ion-list>
+          <ion-item lines="none">
+            <h1>Información personal</h1>
+          </ion-item>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Nombres" labelPlacement="floating" placeholder="Nombres..." formControlName="name">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="signUpForm.get('nombres')?.touched && signUpForm.get('nombres')?.invalid">
+            <p class="error-text">Este campo es obligatorio.</p>
+          </div>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Apellidos" labelPlacement="floating" placeholder="Apellidos..."
+              formControlName="last_name">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="signUpForm.get('apellidos')?.touched && signUpForm.get('apellidos')?.invalid">
+            <p class="error-text">Este campo es obligatorio.</p>
+          </div>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Alias" labelPlacement="floating" placeholder="Nick..." formControlName="nick">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="signUpForm.get('apellidos')?.touched && signUpForm.get('apellidos')?.invalid">
+            <p class="error-text">Este campo es obligatorio.</p>
+          </div>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Email" labelPlacement="floating" placeholder="Email..." formControlName="email">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid"></div>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Celular" labelPlacement="floating" placeholder="Celular..." formControlName="cellphone">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="mt-4" lines="full">
+            <ion-input label="Profesión" labelPlacement="floating" placeholder="Profesión..." formControlName="profession">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid"></div>
+
+          <div class="mt-5 text-center">
+            <ion-button (click)="goToSection(2)">Siguiente</ion-button>
+          </div>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="currentSection === 2">
+    <ion-card-content>
+      <form [formGroup]="signUpForm">
+        <ion-list>
+          <ion-item lines="none">
+            <h1>Información adicional</h1>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="password" label="Contraseña" labelPlacement="stacked" placeholder="**********"
+              formControlName="password">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+          </ion-item>
+
+          <small color="danger" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid">
+            La contraseña es obligatoria
+          </small>
+
+          <ion-item>
+            <ion-input type="password" label="Confirmar contraseña" labelPlacement="stacked" placeholder="**********"
+              formControlName="confirmPassword">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+          </ion-item>
+
+          <ion-text color="danger"
+            *ngIf="signUpForm.hasError('mismatch') && signUpForm.get('confirmPassword')?.touched">
+            Las contraseñas no coinciden
+          </ion-text>
+
+          <div class="mt-4 text-center">
+            <ion-button color="light" (click)="goToSection(1)">Atrás</ion-button>
+            <ion-button (click)="createUser()" [disabled]="signUpForm.invalid">Crear</ion-button>
+          </div>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
