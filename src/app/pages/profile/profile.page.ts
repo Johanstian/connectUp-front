@@ -60,7 +60,7 @@ export class ProfilePage implements OnInit {
   }
 
   avatar() {
-    this.userService.getAvatar(this.user.id).subscribe({
+    this.userService.getAvatar(this.user._id).subscribe({
       next: (data) => {
         this.image = data.imageUrl;
         this.userForm.get('image')?.setValue(this.image);
@@ -108,7 +108,7 @@ export class ProfilePage implements OnInit {
   }
 
   counters() {
-    this.userService.getCounters(this.user.id).subscribe({
+    this.userService.getCounters(this.user._id).subscribe({
       next: (data) => {
         this.counter = data;
       },
